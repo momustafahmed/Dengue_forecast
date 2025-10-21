@@ -40,12 +40,13 @@ env/
 Thumbs.db
 
 # Project specific
-artifacts/*
-!artifacts/.gitkeep
-models/*
-!models/.gitkeep
-data/*
-!data/.gitkeep
+# Allow CSV files and model files for deployment
+!artifacts/*.csv
+!artifacts/*.json
+!artifacts/*.pkl
+!models/*.pkl
+!models/*.json
+!data/*.csv
 
 # Logs
 *.log

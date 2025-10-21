@@ -1,0 +1,40 @@
+{
+  "model_name": "XGBoost",
+  "training_dates": {
+    "start": "0",
+    "end": "24"
+  },
+  "target": "dengue_cases",
+  "features": [
+    "week_of_year",
+    "month",
+    "is_monsoon",
+    "y_lag1",
+    "y_lag2",
+    "y_lag3",
+    "y_lag4",
+    "rainfall_lag2",
+    "rainfall_lag4",
+    "humidity_lag1",
+    "humidity_lag2",
+    "temperature_lag1",
+    "vpd_lag1",
+    "vpd_lag2",
+    "rain_roll4",
+    "hum_roll4",
+    "temp_roll4",
+    "rainfall",
+    "rain_days_ge1mm",
+    "temperature",
+    "humidity",
+    "vpd_kpa"
+  ],
+  "scaler_path": "artifacts/preprocessor.pkl",
+  "validation_metric": 1080.0687255859375,
+  "test_metric": {
+    "MAE": 472.7225341796875,
+    "RMSE": 605.1280856149382,
+    "MAPE": 27.60712446872108
+  },
+  "created_at": "2025-10-21T08:45:37.149537"
+}
