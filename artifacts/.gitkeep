@@ -1,0 +1,2 @@
+# This file ensures the artifacts directory is included in version control
+# Preprocessing artifacts and metrics will be saved here
