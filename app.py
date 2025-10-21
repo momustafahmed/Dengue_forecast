@@ -733,6 +733,19 @@ def main():
         except Exception as e:
             st.error(f"❌ Forecast generation failed: {str(e)}")
             st.info("Please check your data and try again.")
+    
+    # Footer at bottom of content
+    st.markdown("---")
+    st.markdown(
+        """
+        <div style="text-align: center; color: #6B7280; padding: 20px 0;">
+            Developed by <strong>Mohamed Mustaf Ahmed</strong><br>
+            School of Global Health, Faculty of Medicine<br>
+            Chulalongkorn University, Bangkok, Thailand
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 if __name__ == "__main__":
     main()
