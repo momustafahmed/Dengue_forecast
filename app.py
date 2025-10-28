@@ -449,41 +449,79 @@ def main():
     
     # Sidebar controls
     with st.sidebar:
-        st.header("⚙️ Forecast Settings")
+        # Add custom CSS for better sidebar styling
+        st.markdown("""
+        <style>
+        [data-testid="stSidebarNav"] {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+        div[data-testid="stMarkdown"] h3 {
+            color: #1f2937;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        </style>
+        """, unsafe_allow_html=True)
         
-        # Forecast horizon
+        # Forecast Settings Section
+        st.markdown("### ⚙️ Forecast Configuration")
+        st.markdown("Configure how far ahead to predict and visualization options.")
+        
+        # Forecast horizon with better visual feedback
         horizon_weeks = st.slider(
-            "Forecast Horizon (weeks)",
+            "📅 Forecast Horizon",
             min_value=1,
             max_value=12,
             value=4,
-            help="Number of weeks to forecast ahead"
+            help="Select how many weeks into the future you want to forecast",
         )
+        st.caption(f"Will predict dengue cases for the next {horizon_weeks} weeks")
         
-        # Confidence interval toggle
-        show_95ci = st.checkbox("Show 95% Confidence Interval", value=True)
+        # Confidence interval toggle with explanation
+        st.markdown("#### 📊 Visualization Options")
+        show_95ci = st.checkbox(
+            "Show Confidence Intervals",
+            value=True,
+            help="Display the range where we expect 95% of actual values to fall"
+        )
+        if show_95ci:
+            st.caption("Showing 95% confidence intervals in the forecast")
         
         st.divider()
         
-        # Data entry weeks selector
-        st.header("📝 Data Entry")
+        # Data Entry Section
+        st.markdown("### 📝 Input Settings")
+        st.markdown("Configure the time period for your climate data.")
         
-        # Date range for data entry
-        st.markdown("**When does your data start?**")
+        # Date range for data entry with better formatting
+        st.markdown("#### 📅 Data Time Period")
+        default_start = pd.Timestamp.now().normalize() - pd.Timedelta(weeks=12)
+        default_start = default_start - pd.Timedelta(days=default_start.dayofweek)  # Adjust to Monday
+        
         data_start_date = st.date_input(
-            "Week 1 starts on (Monday)",
-            value=pd.Timestamp.now().normalize() - pd.Timedelta(weeks=12),
-            help="Select the Monday when your first week of data begins"
+            "Start Date (Monday)",
+            value=default_start,
+            help="Choose the Monday when your first week of data begins",
         )
+        st.caption("Data should start on a Monday for weekly analysis")
         
+        # Weeks selector with visual feedback
+        st.markdown("#### 📊 Data Range")
         weeks_to_enter = st.number_input(
-            "Weeks to enter",
+            "Number of Weeks",
             min_value=12,
             max_value=52,
             value=12,
             step=1,
-            help="Minimum 12 weeks of data required for accurate forecasts"
+            help="Select how many weeks of data you want to enter (minimum 12 for accurate forecasts)"
         )
+        st.caption(f"Entering data for {weeks_to_enter} weeks starting {data_start_date.strftime('%B %d, %Y')}")
+        
+        # Info box at the bottom
+        st.markdown("---")
+        st.info("💡 For best results, enter at least 12 weeks of consistent data")
     
     # Load sample data for prefilling
     if 'sample_data' not in st.session_state:
