@@ -739,9 +739,7 @@ def main():
     st.markdown(
         """
         <div style="text-align: center; color: #6B7280; padding: 20px 0;">
-            Developed by <strong>Mohamed Mustaf Ahmed</strong><br>
-            School of Global Health, Faculty of Medicine<br>
-            Chulalongkorn University, Bangkok, Thailand
+            Developed by <strong>Mohamed Mustaf Ahmed</strong>, School of Global Health, Faculty of Medicine, Chulalongkorn University, Bangkok, Thailand
         </div>
         """,
         unsafe_allow_html=True,
