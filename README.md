@@ -71,3 +71,6 @@ The interface allows you to:
 ## License
 
 MIT
+
+---
+Developed by Mohamed Mustaf Ahmed, School of Global Health, Faculty of Medicine, Chulalongkorn University, Bangkok, Thailand
